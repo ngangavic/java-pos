@@ -5,8 +5,8 @@
  */
 package point.of.sale;
 
-import point.of.sale.Database.DbConnection;
-import static point.of.sale.Database.DbConnection.dbConnect;
+import database.DbConnection;
+import static database.DbConnection.dbConnect;
 
 /**
  *
