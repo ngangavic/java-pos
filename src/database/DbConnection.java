@@ -21,7 +21,7 @@ public class DbConnection {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/javapos","root","");
-            JOptionPane.showMessageDialog(null, "Connected successfully: "+connection);
+           // JOptionPane.showMessageDialog(null, "Connected successfully: "+connection);
             return connection;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Connection error: " + e);

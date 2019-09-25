@@ -5,6 +5,13 @@
  */
 package login;
 
+import static database.DbConnection.dbConnect;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Ng'ang'a Victor
@@ -36,7 +43,6 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
-        setAlwaysOnTop(true);
         setMaximizedBounds(new java.awt.Rectangle(0, 0, 210, 190));
         setMaximumSize(new java.awt.Dimension(210, 190));
         setResizable(false);
@@ -110,6 +116,22 @@ public class Login extends javax.swing.JFrame {
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         // TODO add your handling code here:
+        try{
+        Connection connection = dbConnect();
+        ResultSet resultSet=null;
+        String sql = "SELECT * FROM tbl_users WHERE uname=? AND pass=?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, tf_username.getText().toString());
+        statement.setString(2, tf_password.getText().toString());
+        resultSet=statement.executeQuery();
+        if(resultSet.next()){
+            JOptionPane.showMessageDialog(null, "Login Successfull");
+        }else{
+            JOptionPane.showMessageDialog(null, "Login failed");
+        }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btn_loginActionPerformed
 
     /**
