@@ -5,18 +5,49 @@
  */
 package cart;
 
+import static database.DbLocalConn.dbLocalConnect;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import net.proteanit.sql.DbUtils;
+
 /**
  *
  * @author Ng'ang'a Victor
  */
 public class Cart extends javax.swing.JFrame {
 
+    Connection connLocal;
+    ResultSet resultSet;
+    PreparedStatement preparedStatement;
+
     /**
      * Creates new form Cart
      */
     public Cart() {
         initComponents();
+        connLocal = dbLocalConnect();
+        populateTable();
     }
+    
+    //populate the table
+    private void populateTable(){
+        String sql = "SELECT * FROM tbl_cart";
+        try{
+        preparedStatement=connLocal.prepareStatement(sql);
+        resultSet=preparedStatement.executeQuery();
+        table_cart.setModel(DbUtils.resultSetToTableModel(resultSet));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        
+    }
+    
+    
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
