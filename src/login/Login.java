@@ -5,7 +5,7 @@
  */
 package login;
 
-import static database.DbConnection.dbConnect;
+import static database.DbRemoteConn.dbConnect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
