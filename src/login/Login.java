@@ -5,7 +5,7 @@
  */
 package login;
 
-import static database.DbRemoteConn.dbConnect;
+import static database.DbRemoteConn.dbRemoteConnect;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -117,7 +117,7 @@ public class Login extends javax.swing.JFrame {
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         // TODO add your handling code here:
         try{
-        Connection connection = dbConnect();
+        Connection connection = dbRemoteConnect();
         ResultSet resultSet=null;
         String sql = "SELECT * FROM tbl_users WHERE uname=? AND pass=?";
         PreparedStatement statement = connection.prepareStatement(sql);
