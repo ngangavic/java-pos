@@ -17,7 +17,7 @@ public class DbRemoteConn {
 
     Connection connection = null;
 
-    public static Connection dbConnect() {
+    public static Connection dbRemoteConnect() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/javapos","root","");
